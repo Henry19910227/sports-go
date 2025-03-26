@@ -2,18 +2,29 @@ syntax = "proto3";
 
 // 生產指令：protoc --go_out=. ./proto/user.proto
 // 生產指令(包含 grpc)：protoc --go_out=. --go-grpc_out=. ./proto/user.proto
-option go_package = "./cmd/user/proto";
+option go_package = "./cmd/user/api";
 
 service UserService {
-  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  rpc GetUser (GetUserReq) returns (GetUserResp);
+  rpc Login (LoginReq) returns (LoginResp);
 }
 
-message GetUserRequest {
+message GetUserReq {
   string user_id = 1;
 }
 
-message GetUserResponse {
+message GetUserResp {
   string user_id = 1;
   string name = 2;
   string email = 3;
+}
+
+message LoginReq {
+  string user_id = 1;
+  string token = 2;
+}
+
+message LoginResp {
+  bool success = 1;
+  string message = 2;
 }

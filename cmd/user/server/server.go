@@ -5,8 +5,8 @@ import (
 	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
+	"sports-go/cmd/user/api"
 	"sports-go/cmd/user/config"
-	"sports-go/cmd/user/proto"
 )
 
 // Server 定義 gRPC 伺服器
@@ -16,13 +16,13 @@ type Server struct {
 }
 
 // NewServer 建立 gRPC 伺服器
-func NewServer(cfg *config.Config, user *proto.User) *Server {
+func NewServer(cfg *config.Config, user *api.User) *Server {
 	lis, err := net.Listen("tcp", cfg.GRPCPort)
 	if err != nil {
 		log.Fatalf("Failed to listen on %s: %v", cfg.GRPCPort, err)
 	}
 	grpcServer := grpc.NewServer()
-	proto.RegisterUserServiceServer(grpcServer, user)
+	api.RegisterUserServiceServer(grpcServer, user)
 	reflection.Register(grpcServer) // 啟用 gRPC 反射（方便 gRPC UI 使用）
 
 	return &Server{
