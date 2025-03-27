@@ -7,6 +7,7 @@ import (
 	"net"
 	"sports-go/cmd/user/api"
 	"sports-go/cmd/user/config"
+	"sports-go/shared/pb"
 )
 
 // Server 定義 gRPC 伺服器
@@ -22,7 +23,7 @@ func NewServer(cfg *config.Config, user *api.User) *Server {
 		log.Fatalf("Failed to listen on %s: %v", cfg.GRPCPort, err)
 	}
 	grpcServer := grpc.NewServer()
-	api.RegisterUserServiceServer(grpcServer, user)
+	pb.RegisterUserServiceServer(grpcServer, user)
 	reflection.Register(grpcServer) // 啟用 gRPC 反射（方便 gRPC UI 使用）
 
 	return &Server{

@@ -6,4 +6,5 @@ use (
 	./cmd/payment
 	./cmd/user
 	./internal
+	./shared
 )
