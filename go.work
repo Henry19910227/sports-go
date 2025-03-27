@@ -7,4 +7,6 @@ use (
 	./cmd/user
 	./internal
 	./shared
+	./cmd/api_gateway
+
 )
