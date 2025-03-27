@@ -2,7 +2,7 @@ syntax = "proto3";
 
 // 生產指令：protoc --go_out=. ./proto/user.proto
 // 生產指令(包含 grpc)：protoc --go_out=. --go-grpc_out=. ./proto/user.proto
-option go_package = "./shared/pb";
+option go_package = "./shared/pb/user";
 
 service UserService {
   rpc GetUser (GetUserReq) returns (GetUserResp);

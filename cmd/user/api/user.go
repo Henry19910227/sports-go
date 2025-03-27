@@ -3,16 +3,16 @@ package api
 import (
 	"context"
 	"internal/service"
-	"sports-go/shared/pb"
+	"sports-go/shared/pb/user"
 )
 
 type User struct {
-	pb.UnimplementedUserServiceServer
+	user.UnimplementedUserServiceServer
 }
 
-func (u *User) GetUser(ctx context.Context, req *pb.GetUserReq) (*pb.GetUserResp, error) {
+func (u *User) GetUser(ctx context.Context, req *user.GetUserReq) (*user.GetUserResp, error) {
 	service.Test()
-	res := &pb.GetUserResp{
+	res := &user.GetUserResp{
 		UserId: req.UserId,
 		Name:   "Henry",
 		Email:  "email@email.com",
@@ -20,9 +20,9 @@ func (u *User) GetUser(ctx context.Context, req *pb.GetUserReq) (*pb.GetUserResp
 	return res, nil
 }
 
-func (u *User) Login(ctx context.Context, req *pb.LoginReq) (*pb.LoginResp, error) {
+func (u *User) Login(ctx context.Context, req *user.LoginReq) (*user.LoginResp, error) {
 	service.Test()
-	res := &pb.LoginResp{
+	res := &user.LoginResp{
 		Success: true,
 		Message: req.UserId + " login success",
 	}
