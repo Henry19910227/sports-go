@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"fmt"
 	"internal/service"
 	"sports-go/shared/pb/user"
 )
@@ -24,7 +25,7 @@ func (u *User) Login(ctx context.Context, req *user.LoginReq) (*user.LoginResp, 
 	service.Test()
 	res := &user.LoginResp{
 		Success: true,
-		Message: req.UserId + " login success",
+		Message: fmt.Sprintf("%d login success", req.Uid),
 	}
 	return res, nil
 }

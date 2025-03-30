@@ -2,8 +2,6 @@ module sports-go/cmd/user
 
 go 1.23.0
 
-toolchain go1.24.1
-
 require (
 	github.com/joho/godotenv v1.5.1
 	google.golang.org/grpc v1.71.0

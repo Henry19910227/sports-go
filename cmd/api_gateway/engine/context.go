@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"context"
 	"github.com/gorilla/websocket"
 	"google.golang.org/protobuf/proto"
 	"sports-go/shared/pkg/tool/crypto"
@@ -10,6 +11,7 @@ import (
 type Context struct {
 	engine   *Engine
 	client   *Client
+	ctx      context.Context
 	handlers []HandlerFunc
 	mu       sync.RWMutex
 	keys     map[string]interface{}
@@ -23,6 +25,10 @@ func (c *Context) Client() *Client {
 
 func (c *Context) Conn() *websocket.Conn {
 	return c.client.conn
+}
+
+func (c *Context) Ctx() context.Context {
+	return c.ctx
 }
 
 func (c *Context) WriteData(data []byte) {

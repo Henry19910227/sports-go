@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"context"
 	"github.com/gorilla/websocket"
 	"log"
 	"sync"
@@ -47,6 +48,7 @@ func (c *Client) read() {
 		context := Context{
 			engine:   c.engine,
 			client:   c,
+			ctx:      context.Background(),
 			handlers: handlers,
 			keys:     make(map[string]interface{}),
 			index:    -1,
